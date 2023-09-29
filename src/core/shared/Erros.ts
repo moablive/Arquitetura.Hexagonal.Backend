@@ -4,5 +4,4 @@ const Erros = {
     SENHA_INCORRETA: 'SENHA_INCORRETA'
 } as const
 
-
 export default Erros
