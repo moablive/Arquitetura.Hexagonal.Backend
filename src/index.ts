@@ -6,6 +6,9 @@ import RepositorioUsuarioPg from './external/db/RepositorioUsuarioPg';
 import SenhaBcrypt from './external/auth/SenhaBcrypt';
 import RegistrarUsuarioController from './external/api/RegistrarUsuarioController';
 import LoginUsuarioController  from './external/api/LoginUsuarioController';
+import obterProdutoPorId from '@/core/produto/service/obterProdutoPorId';
+import oberProdutoPorIdController from "@/external/api/oberProdutoPorIdController"
+import UsuarioMiddleware from "@/external/api/UsuarioMiddleware"
 
 dotenv.config()
 const app = express()
@@ -34,3 +37,12 @@ const loginUsuario = new LoginUsuario(
     provedorCripto
 )
 new LoginUsuarioController(app, loginUsuario)
+
+
+
+// =============== FECHADAS ======= //
+const usuarioMid = UsuarioMiddleware(repositorioUsuario)
+
+const pegarProdutoPorId = new obterProdutoPorId()
+new oberProdutoPorIdController(app, pegarProdutoPorId, usuarioMid)
+
